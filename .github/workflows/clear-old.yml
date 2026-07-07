@@ -1,0 +1,15 @@
+name: Clear old blog-sdlow folder
+on: workflow_dispatch
+jobs:
+  del:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: rm -rf blog-sdlow
+      - name: push delete
+        run: |
+          git config --global user.name "sdlow"
+          git config --global user.email "2809898553@qq.com"
+          git add .
+          git commit -m "remove old nested folder"
+          git push
