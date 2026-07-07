@@ -104,3 +104,5 @@ deploy:
   type: git
   repo: https://sdlow:你的GitHub令牌@github.com/sdlow/blog-task.git
   branch: gh-pages
+  url: https://sdlow.github.io/blog-task/
+root: /blog-task/
