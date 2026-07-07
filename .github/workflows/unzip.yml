@@ -1,0 +1,19 @@
+name: Unzip Source Code
+on: push
+jobs:
+  unzip-all:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取仓库代码
+        uses: actions/checkout@v4
+      - name: 解压zip包到根目录并删除压缩包
+        run: unzip blog-sdlow.zip -d ./ && rm blog-sdlow.zip
+      - name: 配置Git账号
+        run: |
+          git config --global user.name "sdlow"
+          git config --global user.email "2809898553@qq.com"
+      - name: 提交解压后的全部博客文件
+        run: |
+          git add .
+          git commit -m "自动解压完整Hexo博客源码"
+          git push
