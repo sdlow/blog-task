@@ -1,0 +1,23 @@
+name: Deploy Hexo Blog
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 配置Node环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: 安装Hexo依赖
+        run: npm install
+      - name: 生成静态网页
+        run: npx hexo generate
+      - name: 部署到GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
